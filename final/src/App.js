@@ -1,23 +1,22 @@
 import SelectionPokedex from './SelectionPokedex';
+import SelectionPokemon from './SelectionPokemon';
 import { Pokedex } from 'pokeapi-js-wrapper';
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react';
 
-const P = new Pokedex.Pokedex()
-const [pokedex, setPokedex] = (null);
-P.resource([
-  "api/v2/pokedex",
-]).then( response => {
-  console.log(response)
-})
-let name = Pokedex.name;
+
 function App() {
-console.log("me maw")
-return (
-  <div>
-    <SelectionPokedex pokedex={pokedex}></SelectionPokedex>
-    <button>{name}</button>
+  let view;
+  const [pokedexs, selectedPokedex] = useState(null);
+  const [pokemon, selectedPokemon] = useState(null);
+  const [hasError, setError] = useState(null);
+  const P = new Pokedex()
+  return (
+    <div>
+      <h1>{pokedexs}</h1>
+      <SelectionPokedex pokedexs={selectedPokedex} P={P} setError={setError}/>
     </div>
-);
+  );
 }
 
 export default App;
+
