@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import SelectionPokedex from './SelectionPokedex';
+import SelectionPokemon from './SelectionPokemon';
+import { Pokedex } from 'pokeapi-js-wrapper';
+import React, { useState, useEffect } from 'react';
+
 
 function App() {
+  let view;
+  const [pokedexs, selectedPokedex] = useState(null);
+  const [pokemon, selectedPokemon] = useState(null);
+  const [hasError, setError] = useState(null);
+  const P = new Pokedex()
   return (
     <div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{pokedexs}</h1>
+      <SelectionPokedex pokedexs={selectedPokedex} P={P} setError={setError}/>
     </div>
   );
 }
 
 export default App;
+
